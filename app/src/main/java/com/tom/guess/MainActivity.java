@@ -5,22 +5,31 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-
+    Random random=new Random();
+    int secret=(int)(Math.random()*10+1);
+    EditText edNumber;
+    TextView name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        edNumber = findViewById(R.id.editText);
+        name = findViewById(R.id.name);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +38,17 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+    public void guess(View view){
+        int number = Integer.parseInt(edNumber.getText().toString());
+        if(number<secret){
+            name.setText("Bigger. Not "+number);
+        }else if (number>secret){
+            name.setText("Smaller.Not "+ number);
+        }else{
+            name.setText("Good.You got it.The secret number is "+secret);
+        }
+
     }
 
     @Override
