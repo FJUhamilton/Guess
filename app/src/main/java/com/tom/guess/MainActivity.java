@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     int secret=(int)(Math.random()*10+1);
     EditText edNumber;
     TextView name;
+    TextView texttime;
     ImageView smile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         edNumber = findViewById(R.id.editText);
         name = findViewById(R.id.name);
         smile = findViewById(R.id.goodjob);
+        texttime = findViewById(R.id.texttime);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,12 +47,19 @@ public class MainActivity extends AppCompatActivity {
     }
     public void guess(View view){
         int number = Integer.parseInt(edNumber.getText().toString());
+        int a =0;
         if(number<secret){
             name.setText("Bigger. Not "+number);
+            a++;
+            texttime.setText("You guessed  "+a+" times.");
         }else if (number>secret){
             name.setText("Smaller.Not "+ number);
+            a++;
+            texttime.setText("You guessed  "+a+" times.");
         }else{
             name.setText("Good.You got it.The secret number is "+secret);
+            a++;
+            texttime.setText("You guessed  "+a+" times.");
             smile.setVisibility(View.VISIBLE);
         }
 
