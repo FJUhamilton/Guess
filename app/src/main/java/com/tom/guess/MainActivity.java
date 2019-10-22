@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     TextView name;
     TextView texttime;
     ImageView smile;
+    Button guess;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         smile = findViewById(R.id.goodjob);
         texttime = findViewById(R.id.texttime);
-
+        guess = findViewById(R.id.guess);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +63,18 @@ public class MainActivity extends AppCompatActivity {
             a++;
             texttime.setText("You guessed  "+a+" times.");
             smile.setVisibility(View.VISIBLE);
+            guess.setVisibility(View.INVISIBLE);
         }
 
+    }
+
+    public void restart (View view){
+        Random random=new Random();
+        int secret=(int)(Math.random()*10+1);
+        name.setText("Guess 1~10");
+        texttime.setText("");
+        guess.setVisibility(View.VISIBLE);
+        smile.setVisibility(View.INVISIBLE);
     }
 
     @Override
