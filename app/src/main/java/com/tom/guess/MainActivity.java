@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,13 +21,15 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    Random random=new Random();
-    int secret=(int)(Math.random()*10+1);
+
     EditText edNumber;
     TextView name;
     TextView texttime;
     ImageView smile;
     Button guess;
+    int a =1;
+    Random random=new Random();
+    int secret=(int)(Math.random()*10+1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         smile = findViewById(R.id.goodjob);
         texttime = findViewById(R.id.texttime);
         guess = findViewById(R.id.guess);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,19 +52,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void guess(View view){
+
         int number = Integer.parseInt(edNumber.getText().toString());
-        int a =0;
+
         if(number<secret){
             name.setText("Bigger. Not "+number);
-            a++;
             texttime.setText("You guessed  "+a+" times.");
+            a = a+1;
         }else if (number>secret){
             name.setText("Smaller.Not "+ number);
-            a++;
             texttime.setText("You guessed  "+a+" times.");
+            a = a+1;
         }else{
             name.setText("Good.You got it.The secret number is "+secret);
-            a++;
             texttime.setText("You guessed  "+a+" times.");
             smile.setVisibility(View.VISIBLE);
             guess.setVisibility(View.INVISIBLE);
@@ -69,12 +73,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void restart (View view){
-        Random random=new Random();
-        int secret=(int)(Math.random()*10+1);
+        secret=(int)(Math.random()*10+1);
         name.setText("Guess 1~10");
         texttime.setText("");
         guess.setVisibility(View.VISIBLE);
         smile.setVisibility(View.INVISIBLE);
+        a=a-a;
     }
 
     @Override
