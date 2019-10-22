@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     int secret=(int)(Math.random()*10+1);
     EditText edNumber;
     TextView name;
+    ImageView smile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         edNumber = findViewById(R.id.editText);
         name = findViewById(R.id.name);
+        smile = findViewById(R.id.goodjob);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             name.setText("Smaller.Not "+ number);
         }else{
             name.setText("Good.You got it.The secret number is "+secret);
+            smile.setVisibility(View.VISIBLE);
         }
 
     }
