@@ -1,11 +1,12 @@
 package com.tom.guess;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -68,6 +69,21 @@ public class MainActivity extends AppCompatActivity {
             texttime.setText("You guessed  "+a+" times.");
             smile.setVisibility(View.VISIBLE);
             guess.setVisibility(View.INVISIBLE);
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("GOOD JOB")
+                    .setTitle(" Nice")
+                    .setPositiveButton("OK",new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            secret=(int)(Math.random()*10+1);
+                            name.setText("Guess 1~10");
+                            texttime.setText("");
+                            guess.setVisibility(View.VISIBLE);
+                            smile.setVisibility(View.INVISIBLE);
+                            a=a-a+1;
+                        }
+                    })
+                    .show();
         }
 
     }
@@ -78,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         texttime.setText("");
         guess.setVisibility(View.VISIBLE);
         smile.setVisibility(View.INVISIBLE);
-        a=a-a;
+        a=a-a+1;
     }
 
     @Override
